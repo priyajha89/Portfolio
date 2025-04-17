@@ -1,0 +1,198 @@
+<?php 
+	$def_settings  = 
+			array(
+				'box_layout' => '6', 
+			);
+    $settings = isset( get_post_meta( $post->ID,'pricetable_wp_setting' )[0] ) ? 
+    		get_post_meta( $post->ID,'pricetable_wp_setting' )[0] :
+    		$def_settings ;	
+?>
+    <table class="form-table acc_table">
+	    <tbody>
+		    <tr >
+			   <th><?php _e('Pricetable Layout','pricetable-wp'); ?> </th>
+			   <td>
+				   <select name="box_layout" id="box_layout" class="standard-dropdown" style="width:100%" >
+						<option value="6"  <?php if( $settings['box_layout'] == '6') { echo "selected"; } ?>><?php _e('Two Column Layout', 'pricetable-wp') ?></option>
+						<option value="4" <?php if( $settings['box_layout'] == '4') { echo "selected"; } ?>><?php _e('Three Column Layout', 'pricetable-wp') ?></option>
+						<option value="3"  <?php if( $settings['box_layout'] == '3') { echo "selected"; } ?>><?php _e('Four Column Layout', 'pricetable-wp') ?></option>
+				   </select>
+			    </td>
+		    </tr>
+
+		    <tr >
+				<th scope="row"><label><?php _e('Title/Button Color','pricetable-wp'); ?></label></th>
+				<td>
+					<input id="title_clr" name="title_clr" type="text" value="<?php if(!empty($settings['title_clr'] )) { @esc_attr_e($settings['title_clr']) ; } else { echo "#3364d7"; } ?>" class="my-color-field" data-default-color="#ffffff" />
+				</td>
+			</tr>
+
+			<tr >
+				<th scope="row"><label><?php _e('Price Color','pricetable-wp'); ?></label></th>
+				<td>
+					<input id="price_clr" name="price_clr" type="text" value="<?php if(!empty($settings['price_clr'] )) { @esc_attr_e($settings['price_clr']) ; } else { echo "#3a6ee8"; } ?>" class="my-color-field" data-default-color="#ffffff" />
+				</td>
+			</tr>
+
+			<tr >
+				<th scope="row"><label><?php _e('Icon Color','pricetable-wp'); ?></label></th>
+				<td>
+					<input id="icon_clr" name="icon_clr" type="text" value="<?php if(!empty($settings['icon_clr'] )) { @esc_attr_e($settings['icon_clr']) ; } else { echo "#3a6ee8"; } ?>" class="my-color-field" data-default-color="#ffffff" />
+				</td>
+			</tr>
+
+			
+			<tr >
+				<th scope="row"><label><?php _e('Features Color','pricetable-wp'); ?></label></th>
+				<td>
+					<input id="ftr_clr" name="ftr_clr" type="text" value="<?php if(!empty($settings['ftr_clr'] )) { @esc_attr_e($settings['ftr_clr']) ; } else { echo "#333"; } ?>" class="my-color-field" data-default-color="#000000" />
+				</td>
+			</tr>
+			
+			<tr >
+				<th scope="row"><label><?php _e('Table Background Colour','pricetable-wp'); ?></label></th>
+				<td>
+					<input id="ftr_bgclr" name="ftr_bgclr" type="text" value="<?php if(!empty($settings['ftr_bgclr'] )) { @esc_attr_e($settings['ftr_bgclr']) ; } else { echo "#fff"; } ?>" class="my-color-field" data-default-color="#ffffff" />
+				</td>
+			</tr>
+			
+			
+			
+			<tr class="setting_color">
+				<th><?php _e('Title Font Size','pricetable-wp'); ?> </th>
+				<td>
+					<div id="title_size_id" class="size-slider" ></div>
+					<input type="text" class="slider-text" id="title_size" name="title_size"  readonly="readonly">
+				</td>
+			</tr>
+
+			<tr class="setting_color">
+				<th><?php _e('Title Font Weight','pricetable-wp'); ?> </th>
+				<td>
+					<div id="title_font_id" class="size-slider" ></div>
+					<input type="text" class="slider-text" id="title_font" name="title_font"  readonly="readonly">
+				</td>
+			</tr>
+
+			<tr class="setting_color">
+				<th><?php _e('Price Font Size','pricetable-wp'); ?> </th>
+				<td>
+					<div id="price_size_id" class="size-slider" ></div>
+					<input type="text" class="slider-text" id="price_size" name="price_size"  readonly="readonly">
+				</td>
+			</tr>
+
+			<tr class="setting_color">
+				<th><?php _e('Icon Font Size','pricetable-wp'); ?> </th>
+				<td>
+					<div id="icon_size_id" class="size-slider" ></div>
+					<input type="text" class="slider-text" id="icon_size" name="icon_size"  readonly="readonly">
+				</td>
+			</tr>
+			
+			<tr class="setting_color">
+				<th><?php _e('Features Font Size','pricetable-wp'); ?> </th>
+				<td>
+					<div id="ftr_size_id" class="size-slider" ></div>
+					<input type="text" class="slider-text" id="ftr_size" name="ftr_size"  readonly="readonly">
+				</td>
+			</tr>
+	    </tbody>
+    </table>
+
+    <script>
+		 //Title Size Slider 
+		  jQuery(function() {
+		    jQuery( "#title_size_id" ).slider({
+				orientation: "horizontal",
+				range: "min",
+				max: 40,
+				min:5,
+				slide: function( event, ui ) {
+				jQuery( "#title_size" ).val( ui.value );
+		      }
+				});
+				
+				jQuery( "#title_size_id" ).slider("value",<?php if(!empty($settings['title_size'] )) { @esc_attr_e($settings['title_size']) ; } else { echo "30"; } ?> );
+				jQuery( "#title_size" ).val( jQuery( "#title_size_id" ).slider( "value") );
+		    
+		  });
+    </script>
+
+    <script>
+		 //Title Font Weight Slider 
+		  jQuery(function() {
+		    jQuery( "#title_font_id" ).slider({
+				orientation: "horizontal",
+				range: "min",
+				max: 900,
+				min:100,
+				slide: function( event, ui ) {
+				jQuery( "#title_font" ).val( ui.value );
+		      }
+				});
+				
+				jQuery( "#title_font_id" ).slider("value",<?php if(!empty($settings['title_font'] )) { @esc_attr_e($settings['title_font']) ; } else { echo "700"; } ?> );
+				jQuery( "#title_font" ).val( jQuery( "#title_font_id" ).slider( "value") );
+		    
+		  });
+    </script>
+
+
+    <script>
+		 //Price Size Slider 
+		  jQuery(function() {
+		    jQuery( "#price_size_id" ).slider({
+				orientation: "horizontal",
+				range: "min",
+				max: 60,
+				min:5,
+				slide: function( event, ui ) {
+				jQuery( "#price_size" ).val( ui.value );
+		      }
+				});
+				
+				jQuery( "#price_size_id" ).slider("value",<?php if(!empty($settings['price_size'] )) { @esc_attr_e($settings['price_size']) ; } else { echo "13"; } ?> );
+				jQuery( "#price_size" ).val( jQuery( "#price_size_id" ).slider( "value") );
+		    
+		  });
+    </script>
+
+    <script>
+		 //Icon Size Slider 
+		  jQuery(function() {
+		    jQuery( "#icon_size_id" ).slider({
+				orientation: "horizontal",
+				range: "min",
+				max: 90,
+				min:10,
+				slide: function( event, ui ) {
+				jQuery( "#icon_size" ).val( ui.value );
+		      }
+				});
+				
+				jQuery( "#icon_size_id" ).slider("value",<?php if(!empty($settings['icon_size'] )) { @esc_attr_e($settings['icon_size']) ; } else { echo "60"; } ?> );
+				jQuery( "#icon_size" ).val( jQuery( "#icon_size_id" ).slider( "value") );
+		    
+		  });
+    </script>
+
+    <script>
+
+	 //Feature Size script
+	  jQuery(function() {
+	    jQuery( "#ftr_size_id" ).slider({
+			orientation: "horizontal",
+			range: "min",
+			max: 30,
+			min:5,
+			slide: function( event, ui ) {
+			jQuery( "#ftr_size" ).val( ui.value );
+	      }
+			});
+			
+			jQuery( "#ftr_size_id" ).slider("value",<?php if(!empty($settings['ftr_size'] )) { @esc_attr_e($settings['ftr_size']) ; } else { echo "15"; } ?>);
+			jQuery( "#ftr_size" ).val( jQuery( "#ftr_size_id" ).slider( "value") );
+	    
+	  });
+    </script>  

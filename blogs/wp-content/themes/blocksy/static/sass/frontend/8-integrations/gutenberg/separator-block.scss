@@ -1,0 +1,11 @@
+.wp-block-separator {
+	border: none;
+
+	&:not(.is-style-wide):not(.is-style-dots) {
+		--block-max-width: 100px;
+	}
+
+	&:not(.is-style-dots) {
+		border-bottom: 2px solid;
+	}
+}

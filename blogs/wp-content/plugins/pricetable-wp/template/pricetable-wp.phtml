@@ -1,0 +1,91 @@
+<?php 
+    $settings = get_post_meta( $id,'pricetable_wp_setting' )[0];  
+?>
+
+<style>
+    #container_<?php echo $id; ?> .pricing-head .plan-title {
+        color: <?php echo $settings['title_clr'] ?> ;
+        font-size: <?php echo $settings['title_size'] ?>px;
+        font-weight: <?php echo $settings['title_font'] ?>;
+    }
+
+    #container_<?php echo $id; ?> .price {
+        color: <?php echo $settings['price_clr'] ?>;
+        font-size: <?php echo $settings['price_size'] ?>px;
+    }
+
+    #container_<?php echo $id; ?> .pricing-icon {
+        color: <?php echo $settings['icon_clr'] ?>;
+        font-size: <?php echo $settings['icon_size'] ?>px;
+    }
+
+    #container_<?php echo $id; ?> .button.bth-plan {
+        background: transparent none repeat scroll 0 0;
+        border: 2px solid <?php echo $settings['title_clr'] ?>;
+        color: <?php echo $settings['title_clr'] ?>;
+    }
+
+    #container_<?php echo $id; ?> .button:hover {
+        background: <?php echo $settings['title_clr'] ?>;
+        color: #f1f1f1;
+        border-color: <?php echo $settings['title_clr'] ?>;
+    }
+
+    #container_<?php echo $id; ?> .use-pad-border::after {
+        background: <?php echo $settings['title_clr'] ?> none repeat scroll 0 0;
+    }
+
+    #container_<?php echo $id; ?> .pricing-content .table-content li{
+        color : <?php echo $settings['ftr_clr'] ?>;
+        font-size: <?php echo $settings['ftr_size'] ?>px;
+		
+    }
+
+    .price-item {
+        background: <?php echo $settings['ftr_bgclr'] ?> none repeat scroll 0 0;
+    }
+</style>
+
+<div class="content-section ptb-100">
+
+    <div id="container_<?php echo $id;  ?>">
+
+        <div class="row col-md-12 col-sm-12 col-xl-12">
+
+            <?php foreach((array) $table as $i => $column) : ?> 
+                <?php if( !empty($column['detail']) || !empty(  $column['title'] ) || !empty( $column['price'] ) || !empty( $column['url'] ) ) : ?>
+               
+
+                <div class="col-lg-<?php print $settings['box_layout'] ?> col-md-<?php print $settings['box_layout'] ?> col-sm-6 use-margin">
+                    <div class="price-item text-center">
+                        <div class="pricing-head">
+                            <div class="pricing-icon">
+                                <i class="<?php print 'fa ' . $column['detail'] ?>"></i>
+                            </div>
+                            <h4 class="plan-title"><?php print $column['title'] ?></h4>
+                            <span class="price"><?php print $column['price'] ?></span>
+                        </div>
+                        <div class="pricing-content">
+                            <?php if(!empty($column['features'])) : ?>
+                                <ul class="table-content">
+                                    <?php foreach($column['features'] as $j => $feature) : ?>
+                                        <?php if (  ! empty( $feature['title'] ) ) : ?>
+                                            <li class="table-content-li"><?php print $feature['title'] ?></li>
+                                        <?php endif; ?>
+                                    <?php endforeach ?>
+                                </ul>
+                            <?php endif; ?>
+                        </div>
+                        <div class="pricing-footer">
+                            <a class="button bth-plan" href="<?php print empty($column['url']) ? '#' : $column['url'] ?>"><?php print empty($column['button']) ? __('Select', 'nk-pricetable') : $column['button'] ?></a>
+                        </div>
+                        <span class="use-pad-border"></span>
+                    </div>
+                </div>
+
+            <?php endif; ?>
+
+            <?php endforeach ?>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+	<div class="row" style="overflow:hidden;display:block;width:100%;padding-top:20px">
+		<div class="col-md-4">
+			<div class="demoftr">	
+				<div class="">
+					<div class="wpsm_home_portfolio_showcase">
+						<div class="wpsm_ribbon"><a target="_blank" href="#"><span> Selected </span></a></div>
+						<img class="wpsm_img_responsive ftr_img" src="<?php echo plugins_url('pricetable.png', __FILE__) ?>">
+					</div>
+				</div>
+				<div style="padding:13px;overflow:hidden; background: #EFEFEF; border-top: 1px dashed #ccc;">
+					<h3 class="txt text-center pull-left" style="margin-top: 10px;margin-bottom: 10px;font-weight:400">Selected Design</h3>
+					<a type="button"  class="pull-right btn btn-danger design_btn" id="templates_btn1" target="_blank" href="http://ratinatemplates.com/demo/price-table-plugin/" >Check Demo</a>
+				</div>		
+			</div>	
+		</div>
+	</div>
+
+	<div class="price-columns">
+		<h3>Add Price Table</h3>
+	   
+		<div id="column-skeleton" style="display:none">
+			
+			<span class="ui-icon ui-icon-carat-2-e-w column-handle"></span>
+			<a href="#" class="ui-icon ui-icon-trash submitdelete deletion"></a>
+			
+			<br>
+			<input type="text" class="column-title" name="" placeholder="<?php _e('Title', 'pricetable-wp') ?>" />
+			<input type="text" class="column-price" name="" placeholder="<?php _e('Price', 'pricetable-wp') ?>" />
+			<div class="form-group input-group">
+				<input data-placement="bottomRight" name="price_detail" class="column-detail form-control icp icp-auto"  value="fa-laptop"   placeholder="<?php _e('fa-laptop', 'pricetable-wp') ?>" type="text" style="width: calc(100% - 36px);border-right: none;" readonly="readonly"   />
+				<span class="input-group-addon icon-span-css"><i class="fa fa-laptop"></i></span>
+			</div>
+			<input type="text" class="column-url" name="" placeholder="<?php _e('Button URL', 'pricetable-wp') ?>" />
+			<input type="text" class="column-button" name="" placeholder="<?php _e('Button Text', 'pricetable-wp') ?>" />
+			
+			<h4><a href="#" class="addfeature"><?php _e('Add', 'pricetable-wp') ?></a><?php _e('Features', 'pricetable-wp') ?></h4>
+			<div class="feautres">
+				<div class="feature">
+					<span class="ui-icon ui-icon-carat-2-n-s feature-handle"></span>
+					<a href="#" class="ui-icon ui-icon-trash submitdelete deletion"></a>
+					
+					<div><input type="text" class="feature-title" placeholder="<?php _e('Title', 'pricetable-wp') ?>"/></div>
+					
+				</div>
+			</div>
+		</div>
+		
+		<?php // Existing columns of the price table ?>
+		<?php foreach($table as $i => $column) : ?>
+			<div class="column">
+				<span class="ui-icon ui-icon-carat-2-e-w column-handle"></span>
+				<a href="#" class="ui-icon ui-icon-trash submitdelete deletion"></a>
+				<br>
+				
+				<input type="text" class="column-title" name="price_<?php print $i ?>_title" value="<?php @esc_attr_e($column['title']) ?>" placeholder="<?php _e('Title', 'pricetable-wp') ?>" />
+				<input type="text" class="column-price" name="price_<?php print $i ?>_price" value="<?php @esc_attr_e($column['price']) ?>" placeholder="<?php _e('Price', 'pricetable-wp') ?>" />
+				
+				<div class="form-group input-group">
+					<input data-placement="bottomRight" name="price_<?php print $i ?>_detail" class="column-detail form-control icp icp-auto" value="<?php @esc_attr_e($column['detail']) ?>" placeholder="<?php _e('fa-laptop', 'pricetable-wp') ?>" type="text" readonly="readonly" style="width: calc(100% - 36px);border-right: none;" />
+					<span class="input-group-addon icon-span-css"><i class="fa fa-laptop"></i></span>
+				</div>
+
+				<input type="text" class="column-url" name="price_<?php print $i ?>_url" value="<?php @esc_attr_e($column['url']) ?>" placeholder="<?php _e('Button URL', 'pricetable-wp') ?>" />
+				<input type="text" class="column-button" name="price_<?php print $i ?>_button" value="<?php @esc_attr_e($column['button']) ?>" placeholder="<?php _e('Button Text', 'pricetable-wp') ?>" />
+				
+				<h4><a href="#" class="addfeature"><?php _e('Add', 'pricetable-wp') ?></a><?php _e('Features', 'pricetable-wp') ?></h4>
+				<div class="feautres">
+					<?php if(isset($column['features'])) : foreach($column['features'] as $j => $feature) : ?>
+						<div class="feature">
+							<span class="ui-icon ui-icon-carat-2-n-s feature-handle"></span>
+							<a href="#" class="ui-icon ui-icon-trash submitdelete deletion"></a>
+							
+							<div><input type="text" class="feature-title" name="price_<?php print $i ?>_feature_<?php print $j ?>_title" value="<?php esc_attr_e($feature['title']) ?>" placeholder="<?php _e('Title', 'pricetable-wp') ?>"/></div>
+							
+						</div>
+					<?php endforeach; endif; ?>
+				</div>
+			</div>
+		<?php endforeach ?>
+		
+		<div class="column addnew"><?php _e('Add Column', 'pricetable-wp') ?></div>
+		<div class="clear"></div>
+	</div>

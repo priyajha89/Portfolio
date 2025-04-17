@@ -1,0 +1,24 @@
+
+.carousel-indicators li.active,.load-more a:hover,.project-filter li:hover,.comment-form input.btn:hover,.blog-tags li a,
+footer,#page-head,#home .slider-wrapper,.flex-control-paging li a.flex-active,
+#contact input.btn:hover,.btn:hover,.layout1 .pricing-table:hover .btn,.layout1 .pricing-table:hover .table-head,
+.layout1 .pricing-table:hover .price-tag,
+.layout1 .pricing-table.premium .btn,.layout1 .pricing-table.premium .table-head,
+.layout1 .pricing-table.premium .price-tag,.layout2 .premium .table-head,.layout2 .btn{
+	background-color:#21aae1; /*could be replaced by any desired color*/
+}
+
+
+.btn:hover,#contact input.btn:hover,.layout2 .btn{
+	border-color:#0491ca;
+}
+
+.project-filter li:hover,.comment-form input.btn:hover{
+	border-color:#21aae1;
+}
+
+.carousel-control:hover,.carousel-control:focus,#home h2,.record .stat,.post-info a,.post-info li:after,.blog-info li,.blog-info li a,
+.share a,.latest-post a{
+	color:#21aae1;
+}
+
